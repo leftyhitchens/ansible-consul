@@ -3,3 +3,4 @@ consulserver1/
 consulserver2/
 consulserver3/
 *.retry
+roles/
