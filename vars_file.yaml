@@ -1,0 +1,7 @@
+---
+consul_download_url: "https://releases.hashicorp.com/consul/1.0.0/consul_1.0.0_linux_amd64.zip"
+name_server_recursors: ["8.8.8.8"]
+default_datacenter: "peak10"
+tls_key_file_path: /etc/pki/tls/private/server.key
+tls_cert_file_path:  /etc/pki/tls/certs/server.cer
+tls_ca_file_path: /etc/pki/tls/certs/root.cer

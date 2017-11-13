@@ -1,0 +1,24 @@
+{
+    "node_name": "consul-{{inventory_hostname}}",
+    "datacenter":"{{default_datacenter}}",
+    "ports": {
+    	"dns": 53,
+        "https": 8080
+    },
+    "addresses": {
+        "http": "{{inventory_hostname}} 127.0.0.1",
+        "dns": "{{inventory_hostname}} 127.0.0.1"
+    },
+    "recursors":{{name_server_recursors|to_json}},
+    "server": true,
+    "bootstrap_expect": {{ansible_play_batch|length}},
+    "retry_join": {{ansible_play_batch|difference([inventory_hostname])|to_json}},
+    "key_file": "{{tls_key_file_path}}",
+    "cert_file": "{{tls_cert_file_path}}",
+    "ca_file": "{{tls_ca_file_path}}",
+    "verify_incoming": true,
+    "verify_outgoing": true,
+    "verify_incoming_rpc": true,
+    "verify_incoming_https": true,
+    "verify_server_hostname": true
+}

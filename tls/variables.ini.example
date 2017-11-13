@@ -1,0 +1,13 @@
+[variables]
+default_ca=company_name
+root_cert_path=/path/to/root/cert
+private_key_path=/path/to/private_key_path
+default_days=365
+serial_file_path=/path/to/serial/file/
+certificate_database_path=/path/to/database
+server_name=supplied
+state=supplied
+country=supplied
+email=supplied
+organization=supplied
+organizational_unit_name=IT

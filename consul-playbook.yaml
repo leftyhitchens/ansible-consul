@@ -1,0 +1,76 @@
+---
+- hosts: consul-servers
+  remote_user: ubuntu
+  tasks:
+    - name: Update apt cache
+      become: true
+      apt:
+        update_cache: yes
+        cache_valid_time: 86400 #One day
+    - name: Install unzip
+      become: true
+      apt:
+        name: unzip
+    - name: "download consul"
+      get_url: 
+        url: "{{consul_download_url}}"
+        dest: /tmp/consul.zip
+    - name: Extract consul
+      become: true
+      unarchive:
+        src: /tmp/consul.zip
+        dest: /usr/local/bin
+        owner: root
+        group: root
+        mode: 0755
+        remote_src: yes
+    - name: Creates consul config directory
+      become: true
+      file: path=/etc/consul.d/ state=directory
+    - name: Create TLS Directory For private keys
+      become: true
+      file: path=/etc/pki/tls/private/ state=directory
+    - name: Create TLS Directory for certs
+      become: true
+      file: path=/etc/pki/tls/certs/ state=directory
+    - name: Upload ca cert
+      become: true
+      copy:
+        src: "{{playbook_dir}}/tls/output/root.cer"
+        dest: "{{tls_ca_file_path}}"
+    - name: Upload server cert
+      become: true
+      copy:
+        src: "{{playbook_dir}}/tls/output/server.cer"
+        dest: "{{tls_cert_file_path}}"
+    - name: Upload server key
+      become: true
+      copy:
+        src: "{{playbook_dir}}/tls/output/server.key"
+        dest: "{{tls_key_file_path}}"
+    - name: Configure consul server
+      become: true
+      template:
+        src: "{{playbook_dir}}/config/server.j2"
+        dest: /etc/consul.d/server.json
+        mode: 0644
+    - name: Configure consul gossip encryption
+      become: true
+      copy:
+        src: "{{playbook_dir}}/config/encrypt.json"
+        dest: /etc/consul.d/encrypt.json
+    - name: Systemd configuration
+      become: true
+      copy:
+        src: "{{playbook_dir}}/config/consul.service"
+        dest: /etc/systemd/system/consul.service
+        owner: root
+        group: root
+        mode: 0644
+    - name: Start the consul service
+      become: true
+      systemd:
+        name: consul
+        state: started
+        daemon_reload: yes
+        enabled: yes
