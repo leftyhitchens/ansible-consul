@@ -1,4 +1,8 @@
 ---
+- name: "Create consul group"
+  group:
+    name: consul
+    state: present
 - name: "Create consul user"
   user:
     name: consul
