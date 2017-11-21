@@ -44,5 +44,8 @@
     owner: root
     group: root
     mode: 0644
-  notify:
-  - Start consul
+- name: Allow port binding
+  capabilities:
+    path: /usr/local/bin/consul
+    capability: cap_net_bind_service=+ep
+    state: present
