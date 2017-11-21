@@ -10,6 +10,6 @@ consul_domain: consul
 default_datacenter: "datacenter"
 name_server_recursors: ["8.8.8.8"]
 key_file_path: /etc/pki/tls/private/server.key
-cert_file_path:  /etc/pki/tls/certs/server.cer
-ca_file_path: /etc/pki/tls/certs/root.cer
+cert_file_path:  /etc/pki/tls/certs/server.cert
+ca_file_path: /etc/pki/tls/certs/root.cert
 ```
