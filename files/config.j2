@@ -11,14 +11,14 @@
         "dns": "{{inventory_hostname}} 127.0.0.1"
     },
     "recursors":{{name_server_recursors|to_json}},
-    "server": {{is_server}},
+    "server": "{{is_server|to_json}}",
     "bootstrap_expect": {{ansible_play_batch|length}},
     "retry_join": {{ansible_play_batch|difference([inventory_hostname])|to_json}},
     "key_file": "{{key_file_path}}",
     "cert_file": "{{cert_file_path}}",
     "ca_file": "{{ca_file_path}}",
-    "verify_incoming": "{{verify_incoming}}",
-    "verify_outgoing": "{{verify_outgoing}}",
-    "verify_incoming_rpc": "{{verify_incoming_rpc}}",
-    "verify_server_hostname": "{{verify_server_hostname}}"
+    "verify_incoming": "{{verify_incoming|to_json}}",
+    "verify_outgoing": "{{verify_outgoing|to_json}}",
+    "verify_incoming_rpc": "{{verify_incoming_rpc|to_json}}",
+    "verify_server_hostname": "{{verify_server_hostname|to_json}}"
 }
