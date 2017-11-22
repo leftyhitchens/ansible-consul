@@ -49,3 +49,8 @@
     path: /usr/local/bin/consul
     capability: cap_net_bind_service=+ep
     state: present
+- name: Configure as dns
+  copy:
+    src: ./files/dns_head
+    dest: /etc/resolvconf/resolv.conf.d/head
+  when: use_as_dns
