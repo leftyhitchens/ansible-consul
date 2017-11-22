@@ -54,3 +54,7 @@
     src: ./files/dns_head
     dest: /etc/resolvconf/resolv.conf.d/head
   when: use_as_dns
+- name: Reconfigure dns
+  become: true
+  command: 'resolvconf -u'
+  when: use_as_dns
