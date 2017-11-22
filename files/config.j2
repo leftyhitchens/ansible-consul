@@ -12,7 +12,9 @@
     },
     "recursors":{{name_server_recursors|to_json}},
     "server": {{is_server|to_json}},
-    "bootstrap_expect": {{ansible_play_batch|length}},
+    {% if is_server %}
+    "bootstrap_expect": {{group['consul-servers']|length}},
+    {% endif %}
     "retry_join": {{groups['consul-servers']|difference([inventory_hostname])|to_json}},
     "key_file": "{{key_file_path}}",
     "cert_file": "{{cert_file_path}}",
