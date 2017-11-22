@@ -9,7 +9,7 @@ User=consul
 Group=consul
 
 Restart=on-failure
-ExecStart=/usr/local/bin/consul agent  --syslog -server -config-dir /etc/consul.d/ -data-dir /tmp/consul -ui 
+ExecStart=/usr/local/bin/consul agent  --syslog  -config-dir /etc/consul.d/ -data-dir /tmp/consul -ui 
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 
