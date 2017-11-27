@@ -8,3 +8,4 @@ cert_file_path:  /etc/pki/tls/certs/server.cert
 ca_file_path: /etc/pki/tls/certs/root.cert
 is_server: false
 use_as_dns: false # When true will add local host as a nameserver
+enable_script_checks: false
