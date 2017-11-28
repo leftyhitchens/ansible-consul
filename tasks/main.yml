@@ -59,5 +59,6 @@
   command: 'resolvconf -u'
   when: use_as_dns
 - name: Start consul
-  service: consul
-  state: started
+  service:
+    name: consul
+    state: started
