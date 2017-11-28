@@ -58,3 +58,4 @@
   become: true
   command: 'resolvconf -u'
   when: use_as_dns
+  notify: Restart consul
