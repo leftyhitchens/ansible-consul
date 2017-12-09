@@ -10,6 +10,7 @@
         "http": "{{inventory_hostname}} 127.0.0.1",
         "dns": "{{inventory_hostname}} 127.0.0.1"
     },
+    "bind_addr": "{{inventory_hostname}}",
     "recursors":{{name_server_recursors|to_json}},
     "server": {{is_server|to_json}},
     {% if is_server %}
